@@ -7,6 +7,7 @@ $config = [
     'id' => 'simpleIpRegistrator',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'timeZone' => 'Europe/Moscow',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -17,6 +18,16 @@ $config = [
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
+        ],
+        'formatter' => [
+            'dateFormat' => 'd.m.Y',
+            'timeFormat' => 'H:i:s',
+            'datetimeFormat' => 'd.m.Y H:i:s',
+            'decimalSeparator' => ',',
+            'thousandSeparator' => ' ',
+            'currencyCode' => 'RUB',
+            'timeZone' => 'Europe/Moscow',
+            'locale' => 'ru-RU',
         ],
         'user' => [
             'identityClass' => 'app\models\User',
