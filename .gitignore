@@ -37,3 +37,6 @@ tests/_support/_generated
 
 #sqlite Db
 sqlite.db
+
+# Сжатые наборы ресурсов
+config/assets_compressed.php

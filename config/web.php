@@ -5,14 +5,18 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'simpleIpRegistrator',
+    'name' => 'Простой IP регистратор',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'timeZone' => 'Europe/Moscow',
     'aliases' => [
-        '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@bower'   => '@vendor/bower-asset',
+        '@npm'     => '@vendor/npm-asset',
     ],
     'components' => [
+        'assetManager' => [
+            'bundles' => require __DIR__ . '/assets_compressed.php',
+        ],
         'request' => [
             'cookieValidationKey' => 'xXJ1oHKZ4FgShzYt44T1UrKnK25vmZF3',
         ],
@@ -57,6 +61,12 @@ $config = [
             'showScriptName' => false,
             'rules' => [
             ],
+        ],
+    ],
+    'modules' => [
+        'gridview' => [
+            'class' => '\kartik\grid\Module',
+            'bsVersion' => '5.x',
         ],
     ],
     'params' => $params,
