@@ -62,11 +62,11 @@ class SiteController extends Controller
      */
     public function actionIndex(): string
     {
-        $model = new VisitSearch();
-        $provider = $model->search();
-        $columns = $model->columns;
         Visit::saveCurrent();
-        return $this->render('index', compact('provider', 'columns'));
+        $searchModel = new VisitSearch();
+        $provider = $searchModel->search(Yii::$app->request->get());
+        $columns = $searchModel->columns;
+        return $this->render('index', compact('searchModel', 'provider', 'columns'));
     }
 
     /**

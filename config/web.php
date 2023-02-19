@@ -14,9 +14,9 @@ $config = [
         '@npm'     => '@vendor/npm-asset',
     ],
     'components' => [
-        'assetManager' => [
-            'bundles' => require __DIR__ . '/assets_compressed.php',
-        ],
+//        'assetManager' => [
+//            'bundles' => require __DIR__ . '/assets_compressed.php',
+//        ],
         'request' => [
             'cookieValidationKey' => 'xXJ1oHKZ4FgShzYt44T1UrKnK25vmZF3',
         ],
@@ -60,6 +60,11 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                [
+                    'pattern' => '/',
+                    'route' => 'site/index',
+                    'suffix' => '.json',
+                ],
             ],
         ],
     ],
