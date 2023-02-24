@@ -1,5 +1,6 @@
 <?php
 
+use app\models\forms\UserIpForm;
 use yii\bootstrap5\ActiveForm;
 use yii\widgets\Pjax;
 use app\models\VisitSearch;
@@ -8,6 +9,7 @@ use yii\data\ArrayDataProvider;
 
 /** @var yii\web\View $this */
 /** @var VisitSearch $searchModel */
+/** @var UserIpForm $userIpForm */
 /** @var ArrayDataProvider $provider */
 /** @var array $columns */
 
@@ -16,17 +18,21 @@ $this->title = 'IP регистратор';
 
 <div class="main-page-content">
 
+    <?php $form = ActiveForm::begin([
+        'id' => 'show-user-ip-form',
+        'action' => 'project-params/set-show-user-ip',
+        'enableAjaxValidation' => true,
+    ]); ?>
+
+    <?= $form->field($userIpForm, 'showUserIpNotes')->checkbox() ?>
+
+    <?php ActiveForm::end(); ?>
+
     <?php Pjax::begin([
         'id' => 'visit-search-container',
         'timeout' => false,
         'enablePushState' => false,
     ]); ?>
-
-        <?php $form = ActiveForm::begin(['options' => ['data' => ['pjax' => true]]]); ?>
-
-            <?= $form->field($searchModel, 'showUserIpNotes')->checkbox() ?>
-
-        <?php ActiveForm::end(); ?>
 
         <?= GridView::widget([
             'id' => 'visit-register-grid-view',

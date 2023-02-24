@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\db\ActiveQuery;
 use yii\data\ActiveDataProvider;
 use yii\db\Expression;
@@ -14,15 +15,6 @@ use yii\db\Expression;
 class VisitSearch extends Visit
 {
     protected ActiveQuery $query;
-
-    public bool $showUserIpNotes = false;
-
-    public function rules(): array
-    {
-        return array_merge(parent::rules(), [
-            ['showUserIpNotes', 'boolean'],
-        ]);
-    }
 
     public function getColumns(): array
     {
@@ -52,10 +44,16 @@ class VisitSearch extends Visit
         }
     }
 
-    public function search(array $params): ActiveDataProvider
+    public function search(array $params, bool $showUserIpNotes = true): ActiveDataProvider
     {
         $this->load($params);
         $this->query = static::find();
+
+        if (!$showUserIpNotes) {
+            $request = Yii::$app->request;
+            $this->query->where(['<>', 'ip', $request->getUserIP()]);
+        }
+
         $this->addFilters();
 
         return new ActiveDataProvider([
@@ -68,12 +66,6 @@ class VisitSearch extends Visit
                     'time' => SORT_DESC,
                 ]
             ],
-        ]);    }
-
-    public function attributeLabels(): array
-    {
-        return array_merge(parent::attributeLabels(), [
-            'showUserIpNotes' => 'Показывать записи с моим IP',
         ]);
     }
 }

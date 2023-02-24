@@ -3,13 +3,11 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Visit;
-use app\models\VisitSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
+use app\models\forms\LoginForm;
 
 class SiteController extends Controller
 {
@@ -53,20 +51,6 @@ class SiteController extends Controller
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
-    }
-
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
-    public function actionIndex(): string
-    {
-        Visit::saveCurrent();
-        $searchModel = new VisitSearch();
-        $provider = $searchModel->search(Yii::$app->request->get());
-        $columns = $searchModel->columns;
-        return $this->render('index', compact('searchModel', 'provider', 'columns'));
     }
 
     /**
