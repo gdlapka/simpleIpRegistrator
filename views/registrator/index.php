@@ -20,7 +20,7 @@ $this->title = 'IP регистратор';
 
     <?php $form = ActiveForm::begin([
         'id' => 'show-user-ip-form',
-        'action' => 'project-params/set-show-user-ip',
+        'action' => '@web/project-params/set-show-user-ip',
         'enableAjaxValidation' => true,
     ]); ?>
 
