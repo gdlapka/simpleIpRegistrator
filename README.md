@@ -33,3 +33,10 @@ npm i yuicompressor@2.4.7 -g
 ```
 php yii asset config/assets.php config/assets_compressed.php
 ```
+
+##### Настройка констант приложения для production среды
+
+```
+sed -i -- 's#defined('YII_DEBUG')#//defined('YII_DEBUG')#g' "web/index.php"
+sed -i -- 's#defined('YII_ENV')#//defined('YII_ENV')#g' "web/index.php"
+```
