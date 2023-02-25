@@ -21,6 +21,12 @@ touch sqlite.db
 cp config/db.php.install config/db.php
 ```
 
+Применение миграций:  
+
+```
+php yii migrate --interactive=0
+```
+
 ##### Установка компрессоров
 
 ```
