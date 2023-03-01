@@ -63,7 +63,7 @@ class VisitSearch extends Visit
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'time' => SORT_DESC,
+                    'time' => SORT_ASC,
                 ]
             ],
         ]);
