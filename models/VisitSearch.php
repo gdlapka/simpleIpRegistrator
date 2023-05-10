@@ -3,14 +3,16 @@
 namespace app\models;
 
 use Yii;
+use Carbon\Carbon;
+use yii\db\Expression;
 use yii\db\ActiveQuery;
 use yii\data\ActiveDataProvider;
-use yii\db\Expression;
 
 /**
  * Поисковая модель Visit
  *
  * @property-read array $columns
+ * @property-read string $sortableTime
  */
 class VisitSearch extends Visit
 {
@@ -19,7 +21,12 @@ class VisitSearch extends Visit
     public function getColumns(): array
     {
         return [
-            'time',
+            [
+                'attribute' => 'time',
+                'value' => function($model) {
+                    return Carbon::createFromFormat('Y.m.d H:i:s', $model->time)->format('d.m.Y H:i:s');
+                },
+            ],
             'ip',
             'remote_ip',
             'host',
@@ -34,6 +41,10 @@ class VisitSearch extends Visit
     protected function addFilters(): void
     {
         foreach ($this->columns as $column) {
+            if (is_array($column)) {
+                $column = $column['attribute'];
+            }
+
             if (isset($this->$column)) {
                 $this->query->andFilterWhere([
                     'like',

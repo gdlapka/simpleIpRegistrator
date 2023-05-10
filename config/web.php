@@ -25,9 +25,9 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'formatter' => [
-            'dateFormat' => 'd.m.Y',
+            'dateFormat' => 'Y.m.d',
             'timeFormat' => 'H:i:s',
-            'datetimeFormat' => 'd.m.Y H:i:s',
+            'datetimeFormat' => 'Y.m.d H:i:s',
             'decimalSeparator' => ',',
             'thousandSeparator' => ' ',
             'currencyCode' => 'RUB',
